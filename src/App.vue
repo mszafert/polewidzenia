@@ -1,32 +1,28 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
+import { ref } from 'vue';
+import CardLink from './components/CardLink.vue';
+
+const pages = ref([
+  { id: 1, url: '#', title: 'zajęcia cykliczne', image: '/src/assets/img01.jpg' },
+  { id: 2, url: '#', title: 'kontakt, o nas, dokumenty', image: '/src/assets/img02.jpg' },
+  { id: 3, url: '#', title: 'wakacje, ferie zimowe', image: '/src/assets/img03.jpg' },
+  { id: 4, url: '#', title: 'warsztaty weekendowe', image: '/src/assets/img04.jpg' },
+  { id: 6, url: '', title: ' ', image: '' },
+  { id: 5, url: '#', title: 'przygotowanie do egzaminów', image: '/src/assets/img06.jpg' },
+  { id: 7, url: '#', title: 'warsztaty dla szkół', image: '' },
+  { id: 8, url: '#', title: 'warsztaty dla biznesu', image: '/src/assets/img08.jpg' },
+  { id: 9, url: '#', title: 'ceramika', image: '/src/assets/img09.jpg' },
+]);
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div flex flex-wrap gap-5 ma w-235>
+    <CardLink
+      v-for="page in pages"
+      :key="page.id"
+      :image-url="page.image"
+      :url="page.url"
+      :title="page.title"
+    />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
