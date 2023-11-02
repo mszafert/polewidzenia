@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CardLink from './components/CardLink.vue';
+import ModalView from './components/ModalView.vue';
 
 const pages = ref([
   { id: 1, url: '#', title: 'zajęcia cykliczne', image: '/src/assets/img01.jpg' },
@@ -13,6 +14,12 @@ const pages = ref([
   { id: 8, url: '#', title: 'warsztaty dla biznesu', image: '/src/assets/img08.jpg' },
   { id: 9, url: '#', title: 'ceramika', image: '/src/assets/img09.jpg' },
 ]);
+
+const showModal = ref(false);
+
+const handleClick = () => {
+  showModal.value = true;
+};
 </script>
 
 <template>
@@ -24,10 +31,9 @@ const pages = ref([
         :image-url="page.image"
         :url="page.url"
         :title="page.title"
+        @click="handleClick()"
       />
     </div>
   </div>
-  <Teleport to="body">
-    <button>Close</button>
-  </Teleport>
+  <ModalView v-model="showModal" />
 </template>

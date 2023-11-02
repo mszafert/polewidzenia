@@ -4,7 +4,6 @@ defineProps<{
   title: string;
   url?: string;
 }>();
-const handleClick = (e: Event) => console.log(e.target);
 </script>
 
 <template>
@@ -20,7 +19,6 @@ const handleClick = (e: Event) => console.log(e.target);
     transition-opacity-300
     w-75
     hover:opacity-100
-    @click="handleClick"
   >
     <figure h-40 m-0 relative>
       <img v-if="imageUrl" :src="imageUrl" alt="" absolute h-full inset-0 object-cover w-full />
