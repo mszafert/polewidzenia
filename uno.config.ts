@@ -7,7 +7,10 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        robotoslab: [{ name: 'Roboto Slab' }, { name: 'sans-serif', provider: 'none' }],
+        robotoslab: [
+          { name: 'Roboto Slab', weights: [400, 600] },
+          { name: 'sans-serif', provider: 'none' },
+        ],
       },
     }),
   ],

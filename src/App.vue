@@ -9,20 +9,25 @@ const pages = ref([
   { id: 4, url: '#', title: 'warsztaty weekendowe', image: '/src/assets/img04.jpg' },
   { id: 6, url: '', title: ' ', image: '' },
   { id: 5, url: '#', title: 'przygotowanie do egzaminów', image: '/src/assets/img06.jpg' },
-  { id: 7, url: '#', title: 'warsztaty dla szkół', image: '' },
+  { id: 7, url: '#', title: 'warsztaty dla szkół', image: '/src/assets/img07.jpg' },
   { id: 8, url: '#', title: 'warsztaty dla biznesu', image: '/src/assets/img08.jpg' },
   { id: 9, url: '#', title: 'ceramika', image: '/src/assets/img09.jpg' },
 ]);
 </script>
 
 <template>
-  <div flex flex-wrap gap-5 ma w-235>
-    <CardLink
-      v-for="page in pages"
-      :key="page.id"
-      :image-url="page.image"
-      :url="page.url"
-      :title="page.title"
-    />
+  <div flex items-center justify-center h-screen>
+    <div flex flex-wrap gap-5 w-235>
+      <CardLink
+        v-for="page in pages"
+        :key="page.id"
+        :image-url="page.image"
+        :url="page.url"
+        :title="page.title"
+      />
+    </div>
   </div>
+  <Teleport to="body">
+    <button>Close</button>
+  </Teleport>
 </template>
