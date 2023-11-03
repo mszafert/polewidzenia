@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import CardLink from '@/components/CardLink.vue';
+import ModalView from '@/components/ModalView.vue';
 import { ref } from 'vue';
-import CardLink from './components/CardLink.vue';
-import ModalView from './components/ModalView.vue';
 
 const pages = ref([
   { id: 1, url: '#', title: 'zajęcia cykliczne', image: '/src/assets/img01.jpg' },
