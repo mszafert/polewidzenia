@@ -1,24 +1,15 @@
 <script setup lang="ts">
 import CardLink from '@/components/CardLink.vue';
 import ModalView from '@/components/ModalView.vue';
-import { ref } from 'vue';
-
-const pages = ref([
-  { id: 1, url: '#', title: 'zajęcia cykliczne', image: '/src/assets/img01.jpg' },
-  { id: 2, url: '#', title: 'kontakt, o nas, dokumenty', image: '/src/assets/img02.jpg' },
-  { id: 3, url: '#', title: 'wakacje, ferie zimowe', image: '/src/assets/img03.jpg' },
-  { id: 4, url: '#', title: 'warsztaty weekendowe', image: '/src/assets/img04.jpg' },
-  { id: 6, url: '', title: ' ', image: '' },
-  { id: 5, url: '#', title: 'przygotowanie do egzaminów', image: '/src/assets/img06.jpg' },
-  { id: 7, url: '#', title: 'warsztaty dla szkół', image: '/src/assets/img07.jpg' },
-  { id: 8, url: '#', title: 'warsztaty dla biznesu', image: '/src/assets/img08.jpg' },
-  { id: 9, url: '#', title: 'ceramika', image: '/src/assets/img09.jpg' },
-]);
+import { Page, pages } from '@/data';
+import { Ref, ref } from 'vue';
 
 const showModal = ref(false);
+const modalData: Ref<Page | null> = ref(null);
 
-const handleClick = () => {
+const handleClick = (page: Page) => {
   showModal.value = true;
+  modalData.value = page;
 };
 </script>
 
@@ -28,12 +19,12 @@ const handleClick = () => {
       <CardLink
         v-for="page in pages"
         :key="page.id"
-        :image-url="page.image"
-        :url="page.url"
+        :img-url="page.imgUrl"
+        :has-content="page.hasContent"
         :title="page.title"
-        @click="handleClick()"
+        @click="page.hasContent && handleClick(page)"
       />
     </div>
   </div>
-  <ModalView v-model="showModal" />
+  <ModalView v-model="showModal" :data="modalData" />
 </template>
