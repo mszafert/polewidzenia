@@ -1,8 +1,16 @@
-import { defineConfig, presetAttributify, presetUno, presetWebFonts } from 'unocss';
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetUno,
+  presetWebFonts,
+  transformerDirectives,
+} from 'unocss';
 
 export default defineConfig({
   presets: [
     presetAttributify(),
+    presetIcons(),
     presetUno(),
     presetWebFonts({
       provider: 'google',
@@ -14,4 +22,5 @@ export default defineConfig({
       },
     }),
   ],
+  transformers: [transformerDirectives()],
 });

@@ -26,5 +26,7 @@ const handleClick = (page: Page) => {
       />
     </div>
   </div>
-  <ModalView v-model="showModal" :data="modalData" />
+  <Teleport to="body">
+    <ModalView v-model="showModal" :data="modalData" />
+  </Teleport>
 </template>
