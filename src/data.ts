@@ -1,9 +1,4 @@
-export interface Page {
-  id: number;
-  title: string;
-  imgUrl: string;
-  hasContent: boolean;
-}
+import Page from '@/types/Page';
 
 export const pages: Page[] = [
   { id: 1, title: 'zajęcia cykliczne', imgUrl: '/src/assets/img01.jpg', hasContent: true },

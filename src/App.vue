@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import CardLink from '@/components/CardLink.vue';
 import ModalView from '@/components/ModalView.vue';
-import { Page, pages } from '@/data';
-import { Ref, ref } from 'vue';
+import { pages } from '@/data';
+import type Page from '@/types/Page';
+import { ref } from 'vue';
 
 const showModal = ref(false);
-const modalData: Ref<Page | null> = ref(null);
+const modalData = ref<Page | null>(null);
 
 const handleClick = (page: Page) => {
   showModal.value = true;
@@ -14,7 +15,7 @@ const handleClick = (page: Page) => {
 </script>
 
 <template>
-  <div flex items-center justify-center h-screen>
+  <main flex items-center justify-center h-screen>
     <div flex flex-wrap gap-5 w-235>
       <CardLink
         v-for="page in pages"
@@ -25,7 +26,7 @@ const handleClick = (page: Page) => {
         @click="page.hasContent && handleClick(page)"
       />
     </div>
-  </div>
+  </main>
   <Teleport to="body">
     <ModalView v-model="showModal" :data="modalData" />
   </Teleport>

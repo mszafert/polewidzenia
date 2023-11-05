@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Page } from '@/data';
+import type Page from '@/types/Page';
+import { ref } from 'vue';
 
 defineProps<{
   modelValue: boolean;
   data: Page | null;
 }>();
 
+const innerModal = ref(null);
 const emit = defineEmits<{
   'update:modelValue': [modelValue: boolean];
 }>();
@@ -19,7 +21,7 @@ const handleButtonClick = () => {
   <Transition>
     <div v-if="modelValue">
       <div bg-op-30 bg-black fixed flex h-screen top-0 transpare w-screen>
-        <div class="modal-container">
+        <div ref="innerModal" class="modal-container">
           <header mb-7>
             <div flex items-center justify-between>
               <div flex items-center>
