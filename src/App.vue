@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import CardLink from '@/components/CardLink.vue';
+import MenuCard from '@/components/MenuCard.vue';
 import ModalView from '@/components/ModalView.vue';
 import { pages } from '@/data';
 import type Page from '@/types/Page';
-import { ref } from 'vue';
+import { useQuery } from '@vue/apollo-composable';
+import gql from 'graphql-tag';
+import { computed, ref } from 'vue';
+
+const { result } = useQuery(gql`
+  query getMenuItems {
+    menuItems {
+      nodes {
+        id
+        label
+      }
+    }
+  }
+`);
+const menuItems = computed(() => result.value?.menuItems.nodes);
+console.log(menuItems);
 
 const showModal = ref(false);
 const modalData = ref<Page | null>(null);
@@ -17,7 +32,7 @@ const handleClick = (page: Page) => {
 <template>
   <main flex items-center justify-center h-screen>
     <div flex flex-wrap gap-5 w-235>
-      <CardLink
+      <MenuCard
         v-for="page in pages"
         :key="page.id"
         :img-url="page.imgUrl"

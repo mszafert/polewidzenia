@@ -28,7 +28,7 @@ defineProps<{
   <div v-else flex items-center justify-center w-75>
     <div text-center>
       <img :src="imgUrl" alt="Logo" />
-      <h1 font-600 font-robotoslab m-0 mt-3 text-4>Pracownia artystyczna<br />Pole Widzenia</h1>
+      <h1 font-600 font-robotoslab m-0 mt-3 px-12 text-4>Pracownia artystyczna Pole Widzenia</h1>
     </div>
   </div>
 </template>
