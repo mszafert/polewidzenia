@@ -3,12 +3,11 @@ import MenuCard from '@/components/MenuCard.vue';
 import ModalView from '@/components/ModalView.vue';
 import { pages } from '@/data';
 import type Page from '@/types/Page';
-import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import { useQuery, gql } from '@urql/vue';
 
-const { result } = useQuery(gql`
-  query getMenuItems {
+const ShowMenuItems = gql`
+  query ShowMenuItems {
     menuItems {
       nodes {
         id
@@ -16,9 +15,9 @@ const { result } = useQuery(gql`
       }
     }
   }
-`);
-const menuItems = computed(() => result.value?.menuItems.nodes);
-console.log(menuItems);
+`;
+
+const { fetching, data, error } = useQuery({ query: ShowMenuItems });
 
 const showModal = ref(false);
 const modalData = ref<Page | null>(null);
@@ -30,6 +29,13 @@ const handleClick = (page: Page) => {
 </script>
 
 <template>
+  <div v-if="fetching">Loading...</div>
+  <div v-else-if="error">{{ error.message }}</div>
+  <div v-else>
+    <ul>
+      <li v-for="item of data.menuItems.nodes" :key="item.id">{{ item.label }}</li>
+    </ul>
+  </div>
   <main flex items-center justify-center h-screen>
     <div flex flex-wrap gap-5 w-235>
       <MenuCard
