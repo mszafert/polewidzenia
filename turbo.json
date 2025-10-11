@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"],
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+    }
+  }
+}
