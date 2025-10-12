@@ -1,23 +1,17 @@
-import { config } from "@repo/eslint-config/base";
-import astroParser from "astro-eslint-parser";
-import astroPlugin from "eslint-plugin-astro";
+import unocss from '@unocss/eslint-plugin';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import astro from 'eslint-plugin-astro';
 
 export default [
-  ...config,
+  ...astro.configs.recommended,
   {
-    files: ["**/*.astro"],
     plugins: {
-      astro: astroPlugin,
-    },
-    languageOptions: {
-      parser: astroParser,
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".astro"],
-      },
+      '@unocss': unocss,
+      'jsx-a11y': jsxA11y,
     },
     rules: {
-      ...astroPlugin.configs.recommended.rules,
+      '@unocss/order': 'warn',
+      '@unocss/order-attributify': 'warn',
     },
   },
 ];
