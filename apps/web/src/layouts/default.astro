@@ -1,0 +1,44 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Homepage from '../components/homepage.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Pole Widzenia</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <main class="grid md:grid-cols-2">
+      <Homepage />
+      <div class="p-10">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  article h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  article p {
+    @apply mb-5;
+  }
+
+  article ul {
+    @apply list-disc pl-5 mb-5;
+  }
+</style>

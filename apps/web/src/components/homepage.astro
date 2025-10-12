@@ -1,0 +1,64 @@
+---
+import Navigation from './navigation.astro';
+
+// const homepage = await getEntry('homepage', 'index');
+// const { cta, backgroundImage, facebook, instagram, privacyPolicy, navigation } = homepage?.data ?? {};
+
+const currentYear = new Date().getFullYear();
+---
+
+<div class="homeside">
+  <Navigation />
+  <div class="flex flex-col gap-5">
+    <h1 class="text-4xl font-bold">[cta]</h1>
+    <ul class="nav-menu">
+      <!-- {navigation?.map(nav => ( -->
+        <li><a href={`/${'nav.page.id'}`}>{'nav.label'}</a></li>
+      <!-- ))} -->
+    </ul>
+    <footer>
+      <hr class="pb-3 opacity-20" />
+      <div class="flex items-center justify-between">
+        <div class="copy">
+          &copy; Copyright {currentYear} by Pole Widzenia
+          <a href={`/${'privacyPolicy?.id'}`}>Polityka prywatności</a>
+        </div>
+        <div class="nav-menu-social">
+          <a href={`${'#'}`}><div class="i-mdi-instagram text-3xl"></div></a>
+          <a href={`${'#'}`}><div class="i-mdi-facebook text-3xl"></div></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<style define:vars={{ bgImg: `url(${'backgroundImage'})` }}>
+  .homeside {
+    background-image: var(--bgImg);
+    @apply bg-(cover center) h-screen flex flex-col justify-between p-10 md:sticky text-light top-0;
+  }
+
+  .nav-menu {
+    @apply text-lg flex gap-5 justify-end;
+  }
+
+  .nav-menu a {
+    @apply transition-opacity hover:(opacity-75 border-b solid);
+  }
+
+  .nav-menu-social {
+    @apply flex gap-2;
+  }
+
+  .nav-menu-social a {
+    @apply transition-opacity hover:opacity-75;
+  }
+
+  .copy {
+    @apply text-sm;
+  }
+
+  .copy a {
+    @apply border-(l light/25 solid) pl-2 ml-1 hover:underline;
+  }
+</style>

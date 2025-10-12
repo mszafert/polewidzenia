@@ -2,7 +2,6 @@ import { config } from "@repo/eslint-config/base";
 import astroParser from "astro-eslint-parser";
 import astroPlugin from "eslint-plugin-astro";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   ...config,
   {
