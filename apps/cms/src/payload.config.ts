@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 
 import { Users, Media, Pages } from '@repo/payload-types/collections';
-import { Homepage } from '@repo/payload-types/globals';
+import { Homepage, Navigation } from '@repo/payload-types/globals';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -20,7 +20,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages],
-  globals: [Homepage],
+  globals: [Homepage, Navigation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

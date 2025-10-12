@@ -88,9 +88,11 @@ export interface Config {
   };
   globals: {
     homepage: Homepage;
+    navigation: Navigation;
   };
   globalsSelect: {
     homepage: HomepageSelect<false> | HomepageSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   user: User & {
@@ -390,6 +392,27 @@ export interface Homepage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  /**
+   * The main navigation menu items
+   */
+  navItems?:
+    | {
+        /**
+         * The page the navigation item links to
+         */
+        page: number | Page;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homepage_select".
  */
 export interface HomepageSelect<T extends boolean = true> {
@@ -405,6 +428,21 @@ export interface HomepageSelect<T extends boolean = true> {
   privacyPolicyUrl?: T;
   facebookUrl?: T;
   instagramUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  navItems?:
+    | T
+    | {
+        page?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
