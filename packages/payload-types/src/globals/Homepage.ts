@@ -21,14 +21,41 @@ export const Homepage: GlobalConfig = {
       label: 'Start Page',
       type: 'relationship',
       relationTo: 'pages',
-      admin: { description: 'The page which will be displayed when the user first visits the website' },
+      admin: {
+        description: 'The page which will be displayed when the user first visits the website',
+        placeholder: 'Select a page',
+      },
+    },
+    {
+      name: 'quickNavLinks',
+      label: 'Quick Navigation Links',
+      type: 'array',
+      fields: [
+        {
+          name: 'page',
+          label: 'Page',
+          type: 'relationship',
+          relationTo: 'pages',
+          required: true,
+          admin: {
+            placeholder: 'Select a page',
+            description: 'The page to link to',
+          },
+        },
+      ],
+      admin: {
+        description: 'Links to important pages for quick navigation',
+      },
     },
     {
       name: 'privacyPolicyUrl',
       label: 'Privacy Policy URL',
       type: 'relationship',
       relationTo: 'pages',
-      admin: { description: 'The page containing the privacy policy' },
+      admin: {
+        description: 'The page containing the privacy policy',
+        placeholder: 'Select a page',
+      },
     },
     {
       name: 'facebookUrl',

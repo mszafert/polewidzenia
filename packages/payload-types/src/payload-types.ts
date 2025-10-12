@@ -362,6 +362,18 @@ export interface Homepage {
    */
   startPage?: (number | null) | Page;
   /**
+   * Links to important pages for quick navigation
+   */
+  quickNavLinks?:
+    | {
+        /**
+         * The page to link to
+         */
+        page: number | Page;
+        id?: string | null;
+      }[]
+    | null;
+  /**
    * The page containing the privacy policy
    */
   privacyPolicyUrl?: (number | null) | Page;
@@ -384,6 +396,12 @@ export interface HomepageSelect<T extends boolean = true> {
   welcomeMessage?: T;
   featureBackgroundImage?: T;
   startPage?: T;
+  quickNavLinks?:
+    | T
+    | {
+        page?: T;
+        id?: T;
+      };
   privacyPolicyUrl?: T;
   facebookUrl?: T;
   instagramUrl?: T;
