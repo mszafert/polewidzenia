@@ -86,8 +86,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    homepage: Homepage;
+  };
+  globalsSelect: {
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -325,6 +329,54 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  /**
+   * A welcome message to display on the homepage
+   */
+  welcomeMessage?: string | null;
+  /**
+   * A feature background image to be used as the homepage background
+   */
+  featureBackgroundImage?: (number | null) | Media;
+  /**
+   * The page which will be displayed when the user first visits the website
+   */
+  startPage?: (number | null) | Page;
+  /**
+   * The page containing the privacy policy
+   */
+  privacyPolicyUrl?: (number | null) | Page;
+  /**
+   * The URL of the Facebook page
+   */
+  facebookUrl?: string | null;
+  /**
+   * The URL of the Instagram page
+   */
+  instagramUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  welcomeMessage?: T;
+  featureBackgroundImage?: T;
+  startPage?: T;
+  privacyPolicyUrl?: T;
+  facebookUrl?: T;
+  instagramUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

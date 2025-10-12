@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./collections": "./src/collections/index.ts",
+    "./globals": "./src/globals/index.ts",
     "./types": "./src/payload-types.ts"
   },
   "scripts": {
