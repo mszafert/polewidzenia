@@ -168,7 +168,18 @@ export interface Media {
  */
 export interface Page {
   id: number;
+  /**
+   * This title will be used in the page header and for SEO purposes.
+   */
   title: string;
+  /**
+   * This slug will be used in the URL and for SEO purposes.
+   */
+  slug: string;
+  /**
+   * A feature image to be used as the background for the left side of the page
+   */
+  featureImageBackground?: (number | null) | Media;
   content: {
     root: {
       type: string;
@@ -294,6 +305,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
+  featureImageBackground?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;
