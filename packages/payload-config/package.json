@@ -1,0 +1,14 @@
+{
+  "name": "@repo/payload-config",
+  "version": "0.0.0",
+  "dependencies": {
+    "@payloadcms/db-sqlite": "3.59.0",
+    "@payloadcms/richtext-lexical": "3.59.0",
+    "@repo/payload-types": "workspace:*",
+    "payload": "3.59.0",
+    "sharp": "0.34.2"
+  },
+  "private": true,
+  "type": "module",
+  "types": "./src/index.ts"
+}

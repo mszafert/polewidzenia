@@ -1,0 +1,46 @@
+{
+  "dependencyTypes": [
+    "dev",
+    "prod",
+    "peer"
+  ],
+  "semverGroups": [
+    {
+      "label": "Payload CMS packages should use exact versions",
+      "packages": ["**"],
+      "dependencies": ["payload", "@payloadcms/**"],
+      "dependencyTypes": ["prod"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "React packages should be synchronized",
+      "packages": ["**"],
+      "dependencies": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "dependencyTypes": ["prod", "dev"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "TypeScript should be synchronized",
+      "packages": ["**"],
+      "dependencies": ["typescript"],
+      "dependencyTypes": ["dev"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "Sharp should be synchronized",
+      "packages": ["**"],
+      "dependencies": ["sharp"],
+      "dependencyTypes": ["prod"],
+      "policy": "sameRange"
+    }
+  ],
+  "versionGroups": [
+    {
+      "label": "Workspace packages should use workspace protocol",
+      "packages": ["**"],
+      "dependencies": ["@repo/**"],
+      "dependencyTypes": ["prod", "dev"],
+      "pinVersion": "workspace:*"
+    }
+  ]
+}

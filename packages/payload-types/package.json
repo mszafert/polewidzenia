@@ -1,19 +1,19 @@
 {
   "name": "@repo/payload-types",
   "version": "0.0.0",
-  "private": true,
-  "type": "module",
+  "devDependencies": {
+    "payload": "3.59.0",
+    "typescript": "^5.9.2"
+  },
   "exports": {
     "./collections": "./src/collections/index.ts",
     "./globals": "./src/globals/index.ts",
     "./types": "./src/payload-types.ts"
   },
+  "private": true,
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
   },
-  "devDependencies": {
-    "typescript": "^5.9.2",
-    "payload": "3.59.0"
-  }
+  "type": "module"
 }
