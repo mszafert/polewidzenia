@@ -1,6 +1,5 @@
 import eslintPluginAstro from "eslint-plugin-astro";
-import typescriptEslint from "typescript-eslint";
-import { config as baseConfig } from "./base.js";
+import { baseConfig } from "./base.js";
 
 /**
  * A custom ESLint configuration for Astro projects.
@@ -11,7 +10,6 @@ export const astroConfig = [
   ...baseConfig,
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs["jsx-a11y-recommended"],
-  ...typescriptEslint.configs.recommended,
   {
     rules: {
       // Astro specific rules can be added here

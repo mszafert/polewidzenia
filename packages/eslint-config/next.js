@@ -1,5 +1,5 @@
 import pluginNext from "@next/eslint-plugin-next";
-import { config as baseConfig } from "./base.js";
+import { baseConfig } from "./base.js";
 import { createReactConfig } from "./react-helper.js";
 
 /**
