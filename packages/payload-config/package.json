@@ -1,6 +1,10 @@
 {
   "name": "@repo/payload-config",
   "version": "0.0.0",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "dependencies": {
     "@payloadcms/db-sqlite": "3.59.0",
     "@payloadcms/richtext-lexical": "3.59.0",

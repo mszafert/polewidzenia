@@ -6,6 +6,8 @@
     "@payloadcms/next": "3.59.0",
     "@payloadcms/payload-cloud": "3.59.0",
     "@payloadcms/richtext-lexical": "3.59.0",
+    "@repo/payload-config": "workspace:*",
+    "@repo/payload-types": "workspace:*",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
@@ -17,8 +19,6 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/payload-config": "workspace:*",
-    "@repo/payload-types": "workspace:*",
     "@types/node": "^22.5.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
