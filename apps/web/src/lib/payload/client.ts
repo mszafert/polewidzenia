@@ -1,9 +1,7 @@
 import { getPayload } from 'payload';
 import { createPayloadConfig } from '@repo/payload-config';
 
-const config = createPayloadConfig({
-  // Web app doesn't need admin config
-});
+const config = createPayloadConfig({});
 
 let cachedPayload: PayloadClient | null = null;
 
