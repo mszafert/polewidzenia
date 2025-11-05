@@ -9,6 +9,7 @@
     "@payloadcms/db-sqlite": "3.59.0",
     "@payloadcms/richtext-lexical": "3.59.0",
     "@repo/payload-types": "workspace:*",
+    "dotenv": "^16.4.7",
     "payload": "3.59.0",
     "sharp": "0.34.2"
   },

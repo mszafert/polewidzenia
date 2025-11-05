@@ -1,5 +1,16 @@
 ---
 import DefaultLayout from '@layouts/default.astro';
+import createPayloadConfig from '@repo/payload-config';
+import { getPayload } from 'payload';
+
+const config = createPayloadConfig({});
+const payload = await getPayload({ config });
+const pages = await payload.find({
+  collection: 'pages',
+  limit: 100,
+});
+
+console.log(pages);
 ---
 
 <DefaultLayout title={'entry.data.title'}>
