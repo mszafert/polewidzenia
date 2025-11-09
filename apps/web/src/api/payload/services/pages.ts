@@ -49,13 +49,16 @@ export const getPageById = async (id: number): Promise<Page | null> => {
 export const getHomepage = async (): Promise<Homepage | null> => {
   const payload = await payloadClient();
 
-    try {
+  try {
     const homepage = await payload.findGlobal({
       slug: 'homepage',
-      depth: 2, // Deeper depth to fetch related pages
-    });    return homepage;
+      depth: 2,
+    });
+
+    return homepage;
   } catch (error) {
     console.error('Error fetching homepage:', error);
+
     return null;
   }
 };
@@ -67,12 +70,10 @@ export const getStartPage = async (): Promise<Page | null> => {
     return null;
   }
 
-  // If startPage is already a Page object
   if (typeof homepage.startPage === 'object') {
     return homepage.startPage;
   }
 
-  // If startPage is just an ID, fetch the full object
   return await getPageById(homepage.startPage);
 };
 
@@ -88,11 +89,9 @@ export const getQuickNavPages = async (): Promise<Page[]> => {
   for (const link of homepage.quickNavLinks) {
     let page: Page | null = null;
 
-    // If page is already a Page object
     if (typeof link.page === 'object') {
       page = link.page;
     } else {
-      // If page is just an ID, fetch the full object
       page = await getPageById(link.page);
     }
 

@@ -10,4 +10,14 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
+  image: {
+    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+      },
+    ],
+  },
 });

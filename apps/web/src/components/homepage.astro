@@ -1,8 +1,10 @@
 ---
+import { getHomepage } from '@services/pages';
+import { getImageData } from '../utils/image';
 import Navigation from './navigation.astro';
 
-// const homepage = await getEntry('homepage', 'index');
-// const { cta, backgroundImage, facebook, instagram, privacyPolicy, navigation } = homepage?.data ?? {};
+const homepage = await getHomepage();
+const backgroundImageData = getImageData(homepage?.featureBackgroundImage);
 
 const currentYear = new Date().getFullYear();
 ---
@@ -10,7 +12,7 @@ const currentYear = new Date().getFullYear();
 <div class="homeside">
   <Navigation />
   <div class="flex flex-col gap-5">
-    <h1 class="text-4xl font-bold">[cta]</h1>
+    <h1 class="text-4xl font-bold">{homepage?.welcomeMessage}</h1>
     <ul class="nav-menu">
       <!-- {navigation?.map(nav => ( -->
         <li><a href={`/${'nav.page.id'}`}>{'nav.label'}</a></li>
@@ -32,10 +34,10 @@ const currentYear = new Date().getFullYear();
   </div>
 </div>
 
-<style define:vars={{ bgImg: `url(${'backgroundImage'})` }}>
+<style define:vars={{ bgImg: backgroundImageData?.url ? `url(${backgroundImageData.url})` : 'none' }}>
   .homeside {
     background-image: var(--bgImg);
-    @apply bg-(cover center) h-screen flex flex-col justify-between p-10 md:sticky text-light top-0;
+    @apply bg-(cover center neutral-500) h-screen flex flex-col justify-between p-10 md:sticky text-light top-0;
   }
 
   .nav-menu {

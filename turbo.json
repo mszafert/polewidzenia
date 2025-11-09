@@ -6,20 +6,20 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI", "CMS_URL"]
     },
     "lint": {
       "dependsOn": ["^lint"],
-      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI", "CMS_URL"]
     },
     "check-types": {
       "dependsOn": ["^check-types"],
-      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI", "CMS_URL"]
     },
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["PAYLOAD_SECRET", "DATABASE_URI"]
+      "env": ["PAYLOAD_SECRET", "DATABASE_URI", "CMS_URL"]
     }
   }
 }
