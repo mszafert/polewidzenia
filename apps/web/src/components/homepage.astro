@@ -4,7 +4,14 @@ import { getImageData } from '@utils/image';
 import Navigation from './navigation.astro';
 
 const homepage = await getHomepage();
-const { welcomeMessage, quickNavLinks, featureBackgroundImage, privacyPolicyUrl, instagramUrl, facebookUrl } = homepage || {};
+const {
+  welcomeMessage,
+  quickNavLinks,
+  featureBackgroundImage,
+  privacyPolicyUrl,
+  instagramUrl,
+  facebookUrl,
+} = homepage || {};
 const backgroundImageData = getImageData(featureBackgroundImage);
 
 const currentYear = new Date().getFullYear();
@@ -15,20 +22,22 @@ const currentYear = new Date().getFullYear();
   <div class="flex flex-col gap-5">
     <h1 class="text-4xl font-bold">{welcomeMessage}</h1>
     <ul class="nav-menu">
-      {quickNavLinks?.map(nav => (
-        <li>
-          <a href={`/${typeof nav.page === 'object' ? nav.page.slug : '#'}`}>
-            {typeof nav.page === 'object' ? nav.page.title : ''}
-          </a>
-        </li>
-      ))}
+      {
+        quickNavLinks?.map((nav) => (
+          <li>
+            <a href={`/${typeof nav.page === 'object' ? nav.page.slug : '#'}`}>
+              {typeof nav.page === 'object' ? nav.page.title : ''}
+            </a>
+          </li>
+        ))
+      }
     </ul>
     <footer>
       <hr class="pb-3 opacity-20" />
       <div class="flex items-center justify-between">
         <div class="copy">
           &copy; Copyright {currentYear} by Pole Widzenia
-          <a href={`/${privacyPolicyUrl || '#'}`}>
+          <a href={`/${typeof privacyPolicyUrl === 'object' && privacyPolicyUrl ? privacyPolicyUrl.slug : '#'}`}>
             {typeof privacyPolicyUrl === 'object' && privacyPolicyUrl && privacyPolicyUrl.title}
           </a>
         </div>
@@ -41,7 +50,9 @@ const currentYear = new Date().getFullYear();
   </div>
 </div>
 
-<style define:vars={{ bgImg: backgroundImageData?.url ? `url(${backgroundImageData.url})` : 'none' }}>
+<style
+  define:vars={{ bgImg: backgroundImageData?.url ? `url(${backgroundImageData.url})` : 'none' }}
+>
   .homeside {
     background-image: var(--bgImg);
     @apply bg-(cover center neutral-500) h-screen flex flex-col justify-between p-10 md:sticky text-light top-0;

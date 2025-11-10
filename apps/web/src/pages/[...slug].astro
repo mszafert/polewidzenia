@@ -1,0 +1,23 @@
+---
+import DefaultLayout from '@layouts/default.astro';
+import { getPageBySlug } from '@services/pages';
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
+
+const { slug } = Astro.params;
+const page = slug ? await getPageBySlug(slug) : null;
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+
+const lexical = page?.content as SerializedEditorState | undefined;
+const html = lexical ? await convertLexicalToHTML({ data: lexical }) : '';
+---
+
+<DefaultLayout title={page.title}>
+  <article>
+    <h1 class="text-4xl font-medium mb-10 pb-2 border-b-1 border-gray-200">{page.title}</h1>
+    <div set:html={html} />
+  </article>
+</DefaultLayout>

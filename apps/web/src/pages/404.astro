@@ -1,0 +1,17 @@
+---
+import DefaultLayout from '@layouts/default.astro';
+---
+
+<DefaultLayout title="404: Not Found">
+  <h1 class="text-4xl font-medium mb-10 pb-2 border-b-1 border-gray-200">404: Not Found</h1>
+  <p>Sorry, we couldn't find what you were looking for.</p>
+  <p>
+    <a href="/" class="underline">Go back home</a>
+  </p>
+</DefaultLayout>
+
+<style>
+  p {
+    @apply mb-2;
+  }
+</style>

@@ -93,6 +93,9 @@ importers:
       '@payloadcms/db-sqlite':
         specifier: 3.59.0
         version: 3.59.0(payload@3.59.0(graphql@16.11.0)(typescript@5.9.2))
+      '@payloadcms/richtext-lexical':
+        specifier: 3.59.0
+        version: 3.59.0(@faceless-ui/modal@3.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@payloadcms/next@3.59.0(@types/react@19.1.8)(graphql@16.11.0)(monaco-editor@0.54.0)(next@15.4.4(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.59.0(graphql@16.11.0)(typescript@5.9.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.9.2))(@types/react@19.1.8)(monaco-editor@0.54.0)(next@15.4.4(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.59.0(graphql@16.11.0)(typescript@5.9.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.9.2)(yjs@13.6.27)
       astro:
         specifier: ^5.14.4
         version: 5.14.4(@types/node@22.15.3)(jiti@2.6.1)(rollup@4.52.4)(sass@1.77.4)(tsx@4.20.3)(typescript@5.9.2)(yaml@2.8.1)
@@ -9989,7 +9992,7 @@ snapshots:
   micromark@4.0.2:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.4.1
+      debug: 4.4.3
       decode-named-character-reference: 1.2.0
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.3

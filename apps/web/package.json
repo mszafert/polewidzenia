@@ -4,6 +4,7 @@
   "dependencies": {
     "@astrojs/node": "^9.4.6",
     "@payloadcms/db-sqlite": "3.59.0",
+    "@payloadcms/richtext-lexical": "3.59.0",
     "astro": "^5.14.4",
     "payload": "3.59.0"
   },

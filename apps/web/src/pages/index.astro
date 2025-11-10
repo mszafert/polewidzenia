@@ -1,7 +1,14 @@
 ---
 import DefaultLayout from '@layouts/default.astro';
+import { getStartPage } from '@services/pages';
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
+
+const startPage = await getStartPage();
+const lexical = startPage?.content as SerializedEditorState | undefined;
+const html = lexical ? await convertLexicalToHTML({ data: lexical }) : '';
 ---
 
 <DefaultLayout>
-  <article></article>
+  <article set:html={html} />
 </DefaultLayout>

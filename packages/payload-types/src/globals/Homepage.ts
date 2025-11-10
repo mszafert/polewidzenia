@@ -54,7 +54,7 @@ export const Homepage: GlobalConfig = {
       relationTo: 'pages',
       admin: {
         description: 'The page containing the privacy policy',
-        placeholder: 'Select a page',
+        placeholder: 'Select an URL',
       },
     },
     {
