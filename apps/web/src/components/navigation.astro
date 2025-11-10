@@ -1,11 +1,39 @@
 ---
+import { getHomepage, getNavigation } from '@services/pages';
+import Drawer from './drawer.astro';
 import Logo from './logo.astro';
+
+const homepage = await getHomepage();
+const { instagramUrl, facebookUrl } = homepage || {};
+
+const navigation = await getNavigation();
+const { navItems } = navigation || {};
 ---
 
 <div class="header-nav">
   <a href="/"><Logo /></a>
   <a href="#" class="menu-nav-toggle"><div class="i-mdi-menu text-3xl"></div></a>
 </div>
+
+<Drawer>
+  <div class="flex flex-col h-full place-content-between">
+    <ul class="flex flex-col gap-5">
+      <li><a href="/" class="text-4xl c-neutral-600 font-bold transition-color hover:c-neutral-800">Strona główna</a></li>
+      <li><hr class="c-neutral-200"></li>
+      {navItems?.map(link => (
+        <li>
+          <a href={typeof link.page === 'object' ? `/${link.page.slug}` : '#'} class="menu-link">
+            {typeof link.page === 'object' ? link.page.title : 'Page'}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="flex gap-2 place-content-end">
+      <a href={`${instagramUrl || '#'}`} class="menu-link"><div class="i-mdi-instagram"></div></a>
+      <a href={`${facebookUrl || '#'}`} class="menu-link"><div class="i-mdi-facebook"></div></a>
+    </div>
+  </div>
+</Drawer>
 
 <style>
   .header-nav {
@@ -17,6 +45,43 @@ import Logo from './logo.astro';
   }
 
   .menu-link {
-    @apply text-4xl c-neutral-400 font-bold transition-color hover:c-neutral-700
+    @apply text-4xl c-neutral-400 font-bold transition-color hover:c-neutral-700;
   }
 </style>
+
+<script>
+const setupDrawer = () => {
+  const toggleBtn = document.querySelector('.menu-nav-toggle');
+  const drawerOverlay = document.querySelector('.drawer-overlay');
+  const drawer = document.querySelector('.drawer');
+  const closeBtn = document.querySelector('.close');
+
+  function closeDrawer() {
+    drawerOverlay?.classList.remove('open');
+    drawer?.classList.remove('open');
+  }
+
+  function toggleDrawer() {
+    drawerOverlay?.classList.toggle('open');
+    drawer?.classList.toggle('open');
+  }
+
+  toggleBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleDrawer();
+  });
+
+  closeBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeDrawer();
+  });
+
+  drawerOverlay?.addEventListener('click', (e) => {
+    if (e.target === drawerOverlay) {
+      closeDrawer();
+    }
+  });
+};
+
+document.addEventListener('astro:page-load', setupDrawer);
+</script>

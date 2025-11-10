@@ -1,5 +1,5 @@
 import { payloadClient } from '../client.js';
-import type { Page, Homepage } from '@repo/payload-types/types';
+import type { Page, Homepage, Navigation } from '@repo/payload-types/types';
 
 export const getPages = async (): Promise<Page[]> => {
   const payload = await payloadClient();
@@ -77,7 +77,24 @@ export const getStartPage = async (): Promise<Page | null> => {
   return await getPageById(homepage.startPage);
 };
 
-export const getQuickNavPages = async (): Promise<Page[]> => {
+export const getNavigation = async (): Promise<Navigation | null> => {
+  const payload = await payloadClient();
+
+  try {
+    const navigation = await payload.findGlobal({
+      slug: 'navigation',
+      depth: 2,
+    });
+
+    return navigation;
+  } catch (error) {
+    console.error('Error fetching navigation:', error);
+
+    return null;
+  }
+};
+
+export const getQuickNavLinks = async (): Promise<Page[]> => {
   const homepage = await getHomepage();
 
   if (!homepage?.quickNavLinks) {
