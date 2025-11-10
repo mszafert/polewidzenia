@@ -8,6 +8,7 @@
     "payload": "3.59.0"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.2.3",
     "@repo/eslint-config": "workspace:*",
     "@repo/payload-config": "workspace:*",
     "@repo/payload-types": "workspace:*",

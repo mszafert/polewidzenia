@@ -1,0 +1,22 @@
+---
+import Logo from './logo.astro';
+---
+
+<div class="header-nav">
+  <a href="/"><Logo /></a>
+  <a href="#" class="menu-nav-toggle"><div class="i-mdi-menu text-3xl"></div></a>
+</div>
+
+<style>
+  .header-nav {
+    @apply flex items-center justify-between;
+  }
+
+  .header-nav a {
+    @apply text-light transition-opacity hover:opacity-50;
+  }
+
+  .menu-link {
+    @apply text-4xl c-neutral-400 font-bold transition-color hover:c-neutral-700
+  }
+</style>

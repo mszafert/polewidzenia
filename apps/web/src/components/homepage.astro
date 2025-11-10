@@ -1,11 +1,12 @@
 ---
 import { getHomepage } from '@services/pages';
-import { getImageData } from '../utils/image';
+import { getImageData } from '@utils/image';
 import Navigation from './navigation.astro';
 
 const homepage = await getHomepage();
 const backgroundImageData = getImageData(homepage?.featureBackgroundImage);
 
+console.log(homepage)
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,20 +15,26 @@ const currentYear = new Date().getFullYear();
   <div class="flex flex-col gap-5">
     <h1 class="text-4xl font-bold">{homepage?.welcomeMessage}</h1>
     <ul class="nav-menu">
-      <!-- {navigation?.map(nav => ( -->
-        <li><a href={`/${'nav.page.id'}`}>{'nav.label'}</a></li>
-      <!-- ))} -->
+      {homepage?.quickNavLinks?.map(nav => (
+        <li>
+          <a href={`/${typeof nav.page === 'object' ? nav.page.slug : '#'}`}>
+            {typeof nav.page === 'object' ? nav.page.title : ''}
+          </a>
+        </li>
+      ))}
     </ul>
     <footer>
       <hr class="pb-3 opacity-20" />
       <div class="flex items-center justify-between">
         <div class="copy">
           &copy; Copyright {currentYear} by Pole Widzenia
-          <a href={`/${'privacyPolicy?.id'}`}>Polityka prywatności</a>
+          <a href={`/${homepage?.privacyPolicyUrl && typeof homepage.privacyPolicyUrl === 'object' ? homepage.privacyPolicyUrl.slug : '#'}`}>
+            {homepage?.privacyPolicyUrl && typeof homepage.privacyPolicyUrl === 'object' ? homepage.privacyPolicyUrl.title : ''}
+          </a>
         </div>
         <div class="nav-menu-social">
-          <a href={`${'#'}`}><div class="i-mdi-instagram text-3xl"></div></a>
-          <a href={`${'#'}`}><div class="i-mdi-facebook text-3xl"></div></a>
+          <a href={`${homepage?.instagramUrl ? homepage.instagramUrl : '#'}`}><div class="i-mdi-instagram text-3xl"></div></a>
+          <a href={`${homepage?.facebookUrl ? homepage.facebookUrl : '#'}`}><div class="i-mdi-facebook text-3xl"></div></a>
         </div>
       </div>
     </footer>
