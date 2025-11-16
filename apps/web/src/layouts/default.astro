@@ -35,11 +35,13 @@ const pageTitle = `${title ? `${title} - ` : ''}Pole Widzenia`;
     margin-bottom: 1.5rem;
   }
 
-  article p {
-    @apply mb-5;
-  }
+  article.content {
+    p, hr, ul, ol {
+      @apply mb-5;
+    }
 
-  article ul {
-    @apply list-disc pl-5 mb-5;
-  }
+    ul {
+      @apply list-disc pl-5;
+    }
+}
 </style>

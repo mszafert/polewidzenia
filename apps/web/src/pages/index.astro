@@ -10,5 +10,5 @@ const html = lexical ? await convertLexicalToHTML({ data: lexical }) : '';
 ---
 
 <DefaultLayout>
-  <article set:html={html} />
+  <article class="content" set:html={html} />
 </DefaultLayout>

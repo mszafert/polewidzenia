@@ -16,7 +16,7 @@ const html = lexical ? await convertLexicalToHTML({ data: lexical }) : '';
 ---
 
 <DefaultLayout title={page.title}>
-  <article>
+  <article class="content">
     <h1 class="text-4xl font-medium mb-10 pb-2 border-b-1 border-gray-200">{page.title}</h1>
     <div set:html={html} />
   </article>
