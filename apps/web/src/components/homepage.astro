@@ -1,19 +1,23 @@
 ---
-import { getHomepage } from '@services/pages';
+import { getHomepage, getPageFeatureImage } from '@services/pages';
 import { getImageData } from '@utils/image';
 import Navigation from './navigation.astro';
+
+interface Props {
+  slug?: string;
+}
 
 const homepage = await getHomepage();
 const {
   welcomeMessage,
   quickNavLinks,
-  featureBackgroundImage,
   privacyPolicyUrl,
   instagramUrl,
   facebookUrl,
 } = homepage || {};
-const backgroundImageData = getImageData(featureBackgroundImage);
-
+const { slug } = Astro.props;
+const pageFeatureImage = await getPageFeatureImage(slug);
+const backgroundImageData = getImageData(pageFeatureImage);
 const currentYear = new Date().getFullYear();
 ---
 

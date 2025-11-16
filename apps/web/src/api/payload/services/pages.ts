@@ -1,5 +1,5 @@
 import { payloadClient } from '../client.js';
-import type { Page, Homepage, Navigation } from '@repo/payload-types/types';
+import type { Page, Homepage, Navigation, Media } from '@repo/payload-types/types';
 
 export const getPages = async (): Promise<Page[]> => {
   const payload = await payloadClient();
@@ -23,7 +23,7 @@ export const getPageBySlug = async (slug: string): Promise<Page | null> => {
         equals: slug,
       },
     },
-    depth: 1,
+    depth: 2,
     limit: 1,
   });
 
@@ -37,7 +37,7 @@ export const getPageById = async (id: number): Promise<Page | null> => {
     const page = await payload.findByID({
       collection: 'pages',
       id,
-      depth: 1,
+      depth: 2,
     });
 
     return page;
@@ -52,7 +52,7 @@ export const getHomepage = async (): Promise<Homepage | null> => {
   try {
     const homepage = await payload.findGlobal({
       slug: 'homepage',
-      depth: 2,
+      depth: 3,
     });
 
     return homepage;
@@ -118,4 +118,16 @@ export const getQuickNavLinks = async (): Promise<Page[]> => {
   }
 
   return pages;
+};
+
+export const getPageFeatureImage = async (slug?: string): Promise<Media | null> => {
+  if (slug) {
+    const page = await getPageBySlug(slug);
+    if (page?.featureImageBackground) {
+      return page.featureImageBackground as Media;
+    }
+  }
+
+  const homepage = await getHomepage();
+  return (homepage?.featureBackgroundImage as Media) || null;
 };

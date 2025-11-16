@@ -37,7 +37,6 @@ export const Pages: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
-      required: true,
     },
   ],
 };
