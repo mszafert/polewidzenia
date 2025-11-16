@@ -6,7 +6,7 @@ import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
-import { Users, Media, Pages } from '@repo/payload-types/collections';
+import { Users, Media, Pages, Galleries } from '@repo/payload-types/collections';
 import { Homepage, Navigation } from '@repo/payload-types/globals';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -38,7 +38,7 @@ export const createPayloadConfig = (options: {
         baseDir: options.adminImportMapBaseDir,
       },
     },
-    collections: [Users, Media, Pages],
+    collections: [Users, Galleries, Media, Pages],
     globals: [Homepage, Navigation],
     editor: lexicalEditor(),
     secret: PAYLOAD_SECRET,

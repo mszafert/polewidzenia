@@ -16,6 +16,7 @@ export const getImageData = (media: number | Media | null | undefined): ImageDat
   if (typeof media === 'number') {
     // If it's just an ID, construct URL manually
     const cmsUrl = import.meta.env.CMS_URL || 'http://localhost:3000';
+
     return {
       url: `${cmsUrl}/api/media/file/${media}`,
       alt: 'Image',
